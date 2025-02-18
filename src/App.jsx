@@ -1,6 +1,6 @@
 import Header from "./componenets/Header.jsx"
 import UserInput from "./componenets/UserInput.jsx";
-import Result from "./componenets/Results.jsx";
+import Results from "./componenets/Results.jsx";
 
 import { useState } from "react";
 
@@ -11,6 +11,8 @@ function App() {
     expectedReturn: 5,
     duration: 12
   });
+
+  const inputIsValid = userInput.duration >= 1;
 
   function handleInputChange(inputIdentifier, newValue) {
     setUserInput((prevUserInput) => {
@@ -25,7 +27,7 @@ function App() {
     <>
       <Header />
       <UserInput onChange={handleInputChange} userInput={userInput} />
-      <Result userInput={userInput} />
+      {inputIsValid ? <Results userInput={userInput} /> : <p className="center">Please enter a duration greater than 0.</p>}
     </>
   );
 }
